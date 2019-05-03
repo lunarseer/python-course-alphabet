@@ -67,14 +67,8 @@ def task_6_min_value_list_of_dicts(data: DT, key: str) -> ST:
     Returns:
 
     """
-    output = None
-    if data:
-        print(data)
-        print(key)
-        output = [x for x in data if key in x.keys()]
-        print(output)
-    return output
-
+    search_value = min([y[key] for y in data if key in y.keys()])
+    return [x for x in data if search_value in x.values()][0]
 
 def task_7_max_value_list_of_lists(data: List[List[int]]) -> int:
     """
@@ -87,10 +81,7 @@ def task_8_sum_of_ints(data: List[int]) -> int:
     """
     Find sum of all items in given list
     """
-    # print(data)
-    mydata = sum(data)
-    # print(mydata)
-    return mydata
+    return sum(data)
 
 
 def task_9_sum_characters_positions(text: str) -> int:
@@ -121,7 +112,7 @@ def task_10_generator_of_simple_numbers() -> Generator[int, None, None]:
         next(a)
         >>> 3
     """
-    return (x for x in range(1, 200) if (x % 2 != 0) and x <= 200)
+    return (x for x in range(2, 201) if (x % 2 != 0 and x % 1 != 0))
 
 
 def task_11_create_list_of_random_characters() -> List[str]:
