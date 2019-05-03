@@ -1,4 +1,6 @@
 from typing import List, Dict, Union, Generator
+import random
+import string
 
 # We will work with such dicts
 ST = Dict[str, Union[str, int]]
@@ -54,12 +56,9 @@ def task_5_min_value_strings(data: List[Union[str, int]]) -> str:
     """
     Find the longest string
     """
-    # pass
-    mydata = list(map(str, data))
-    try:
-        return max(mydata, key=len)
-    except:
-        return None
+    if data:
+        return min(map(str, data), key=len)
+
 
 
 def task_6_min_value_list_of_dicts(data: DT, key: str) -> ST:
@@ -68,21 +67,30 @@ def task_6_min_value_list_of_dicts(data: DT, key: str) -> ST:
     Returns:
 
     """
-    return min([x.get(key) for x in list(data)])
+    output = None
+    if data:
+        print(data)
+        print(key)
+        output = [x for x in data if key in x.keys()]
+        print(output)
+    return output
 
 
 def task_7_max_value_list_of_lists(data: List[List[int]]) -> int:
     """
     Find max value from list of lists
     """
-    return max(max(x) for x in data)
+    return max([max(x) for x in data if x])
 
 
 def task_8_sum_of_ints(data: List[int]) -> int:
     """
     Find sum of all items in given list
     """
-    return sum(data)
+    # print(data)
+    mydata = sum(data)
+    # print(mydata)
+    return mydata
 
 
 def task_9_sum_characters_positions(text: str) -> int:
@@ -98,7 +106,8 @@ def task_9_sum_characters_positions(text: str) -> int:
         >>> 532
 
     """
-    print(text)
+    return sum([ord(x) for x in text])
+
 
 
 def task_10_generator_of_simple_numbers() -> Generator[int, None, None]:
@@ -112,7 +121,7 @@ def task_10_generator_of_simple_numbers() -> Generator[int, None, None]:
         next(a)
         >>> 3
     """
-    pass
+    return (x for x in range(1, 200) if (x % 2 != 0) and x <= 200)
 
 
 def task_11_create_list_of_random_characters() -> List[str]:
@@ -120,4 +129,5 @@ def task_11_create_list_of_random_characters() -> List[str]:
     Create list of 20 elements where each element is random letter from latin alphabet
 
     """
-    pass
+    return [random.choice(string.ascii_lowercase) for x in range(20)]
+
