@@ -112,7 +112,7 @@ def task_10_generator_of_simple_numbers() -> Generator[int, None, None]:
         next(a)
         >>> 3
     """
-    return (x for x in range(2, 201) if (x % 2 != 0 and x % 1 != 0))
+    return (x for x in range(2,200) if not [t for t in range(2,x) if not x % t])
 
 
 def task_11_create_list_of_random_characters() -> List[str]:
