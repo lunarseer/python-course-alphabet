@@ -16,10 +16,8 @@ def task_1_fix_names_start_letter(data: DT) -> DT:
         fix_names_start_letters([{'name': 'Alex', 'age': 26}, {'name': 'denys', 'age': 89}])
         >>> [{'name': 'Alex', 'age': 26}, {'name': 'Denys', 'age': 89}]
     """
-    # for item in data:
-        # item["name"] = item["name"].capitalize()
-    # return data
-    return [{k: v.capitalize() for k, v in x.items() if k == "name"} for x in data]
+
+    return [{"name": x.get("name").capitalize(), "age": x.get("age")} for x in data if x.get("name")]
 
 def task_2_remove_dict_fields(data: DT, redundant_keys: List[str]) -> DT:
     """given_data
@@ -112,7 +110,7 @@ def task_10_generator_of_simple_numbers() -> Generator[int, None, None]:
         next(a)
         >>> 3
     """
-    return (x for x in range(2,200) if not [t for t in range(2,x) if not x % t])
+    return (x for x in range(2, 200) if not [t for t in range(2, x) if not x % t])
 
 
 def task_11_create_list_of_random_characters() -> List[str]:
