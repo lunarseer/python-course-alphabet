@@ -47,14 +47,78 @@
     Колекціонерів можна порівнювати за ціною всіх їх автомобілів.
 """
 
-
-class Cesar:
-    pass
+import random
+import uuid
+from . constants import CARS_PRODUCER, CARS_TYPES, TOWNS
 
 
 class Car:
-    pass
+    mileage = 0
+    number = None
+    price = 0
+    producer = ""
+    type = ""
+
+    def __init__(self):
+        pass
+
+    def __eq__(self, other):
+        pass
+
+    def __lt__(self, other):
+        pass
+
+    def __gt__(self, other):
+        pass
+
+    def change_number(self):
+        pass
 
 
 class Garage:
-    pass
+
+    town = ""
+    cars = []
+    places = 0
+    owner = None    #uuid - owner
+
+    def __init__(self):
+        pass
+
+    def add(self):
+        pass
+
+    def remove(self):
+        pass
+
+    def hit_hat(self):
+        pass
+
+
+class Cesar:
+
+    def __init__(self):
+        self.name = ""
+        self.garages = []
+        self.register_id = None    #uuid
+
+    def __eq__(self, other):
+        pass
+
+    def __lt__(self, other):
+        pass
+
+    def __gt__(self, other):
+        pass
+
+    def hit_hat(self):
+        pass
+
+    def garages_count(self):
+        pass
+
+    def cars_count(self):
+        pass
+
+    def add_car(self):
+        pass
