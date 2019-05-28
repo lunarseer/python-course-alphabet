@@ -118,7 +118,8 @@ def task_8_count_customers_by_city(cur):
     Returns: 69 records in descending order
 
     """
-    pass
+    cur.execute("SELECT COUNT(customerid), city FROM Customers GROUP BY city;")
+    return cur.fetchall()
 
 
 def task_9_count_customers_by_country_with_than_10_customers(cur):
@@ -130,7 +131,8 @@ def task_9_count_customers_by_country_with_than_10_customers(cur):
 
     Returns: 3 records
     """
-    pass
+    cur.execute("SELECT COUNT(customerid), country FROM Customers GROUP BY country HAVING COUNT(country) > 10;")
+    return cur.fetchall()
 
 
 def task_10_list_first_10_customers(cur):
@@ -139,7 +141,8 @@ def task_10_list_first_10_customers(cur):
 
     Results: 10 records
     """
-    pass
+    cur.execute("SELECT * FROM Customers WHERE customerid < 11;")
+    return cur.fetchall()
 
 
 def task_11_list_customers_starting_from_11th(cur):
@@ -151,7 +154,8 @@ def task_11_list_customers_starting_from_11th(cur):
 
     Returns: 11 records
     """
-    pass
+    cur.execute("SELECT * FROM Customers WHERE customerid > 11;")
+    return cur.fetchall()
 
 
 def task_12_list_suppliers_from_specified_countries(cur):
@@ -163,7 +167,9 @@ def task_12_list_suppliers_from_specified_countries(cur):
 
     Returns: 8 records
     """
-    pass
+    cur.execute("SELECT supplierid, suppliername, contactname, city, country "
+                "FROM Suppliers WHERE country = 'USA' OR country = 'UK' OR country = 'Japan';")
+    return cur.fetchall()
 
 
 def task_13_list_products_from_sweden_suppliers(cur):
@@ -175,6 +181,7 @@ def task_13_list_products_from_sweden_suppliers(cur):
 
     Returns: 3 records
     """
+    # cur.execute("SELECT * FROM products")
     pass
 
 
