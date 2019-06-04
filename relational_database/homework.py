@@ -75,9 +75,8 @@ def task_5_delete_the_last_customer(con) -> None:
         con: psycopg connection
     """
     with con.cursor() as cur:
-        cur.execute("SELECT customerid FROM customers;")
-        last_id = max(cur.fetchall())[0]
-        cur.execute("DELETE FROM customers WHERE customerid = {};".format(last_id))
+        cur.execute("DELETE FROM customers WHERE customerid IN "
+                    "(SELECT customerid FROM customers ORDER BY customerid DESC LIMIT 1);")
 
 
 def task_6_list_all_supplier_countries(cur) -> list:
