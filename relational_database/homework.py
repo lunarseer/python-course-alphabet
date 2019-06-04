@@ -186,12 +186,12 @@ def task_13_list_products_from_sweden_suppliers(cur):
     Returns: 3 records
     """
     cur.execute("SELECT products.productname FROM products "
-                "FULL OUTER JOIN suppliers ON products.supplierid = suppliers.supplierid "
+                "JOIN suppliers ON products.supplierid = suppliers.supplierid "
                 "WHERE suppliers.country = 'SWEDEN';")
     return cur.fetchall()
 
 
-def task_14_list_products_with_supplier_information(cur):
+def task_14_list_products_with_supplier_information(cur):   #FAILED, money type issue
     """
     List all products with supplier information
 
@@ -213,7 +213,7 @@ def task_14_list_products_with_supplier_information(cur):
     cur.execute("SELECT products.productid, products.productname, products.unit, products.price, "
                 "suppliers.country, suppliers.city, suppliers.suppliername "
                 "FROM products "
-                "INNER JOIN suppliers ON suppliers.supplierid = products.supplierid;")
+                "JOIN suppliers ON suppliers.supplierid = products.supplierid;")
     return cur.fetchall()
 
 
@@ -238,7 +238,7 @@ def task_15_list_customers_with_any_order_or_not(cur):
     return cur.fetchall()
 
 
-def task_16_match_all_customers_and_suppliers_by_country(cur):
+def task_16_match_all_customers_and_suppliers_by_country(cur):  #FAILED
     """
     Match all customers and suppliers by country
 
@@ -253,16 +253,15 @@ def task_16_match_all_customers_and_suppliers_by_country(cur):
     "customercountry": "Argentina",
     "suppliercountry": null,
     "suppliername": null
-
-
     """
     cur.execute("SELECT customers.customername, customers.address, customers.country, "
                 "suppliers.country, suppliername "
                 "FROM customers "
-                "FULL OUTER JOIN suppliers ON customers.country = suppliers.country;")
-    return cur.fetchall()
+                "JOIN suppliers ON customers.country = suppliers.country;")
+    return cur.fetchall()   # returns <class 'psycopg2.extras.RealDictRow'> instead of Dict, why?
+
 
 
 """
-looks like predicted output from tasks_[8,14,16].json not matches to actual tests results
+looks like predicted output from tasks_[8,14].json not matches to actual tests results
 """
