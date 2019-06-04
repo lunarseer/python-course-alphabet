@@ -163,6 +163,8 @@ class TestSQLQueries(unittest.TestCase):
             actual_result = task_8_count_customers_by_city(cursor)
             actual_result = [dict(record) for record in actual_result]
             expected_result = self.load_rows_from_file("task_8.json")
+            print(actual_result[0])
+            print(expected_result[0])
 
         for i, row in enumerate(actual_result):
             self.assertDictEqual(row, expected_result[i])
@@ -217,6 +219,8 @@ class TestSQLQueries(unittest.TestCase):
             actual_result = task_14_list_products_with_supplier_information(cursor)
             actual_result = [dict(record) for record in actual_result]
             expected_result = self.load_rows_from_file("task_14.json")
+            print(actual_result[0])
+            print(expected_result[0])
 
         for i, row in enumerate(actual_result):
             self.assertDictEqual(row, expected_result[i])
@@ -235,6 +239,8 @@ class TestSQLQueries(unittest.TestCase):
             actual_result = task_16_match_all_customers_and_suppliers_by_country(cursor)
             actual_result = [dict(record) for record in actual_result]
             expected_result = self.load_rows_from_file("task_16.json")
+            print(actual_result[0])
+            print(expected_result[0])
 
         for i, row in enumerate(actual_result):
             self.assertDictEqual(row, expected_result[i])

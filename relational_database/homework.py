@@ -117,6 +117,10 @@ def task_8_count_customers_by_city(cur):
 
     Returns: 69 records in descending order
 
+    json Example:
+    "count": 3,
+    "city": "Madrid"
+
     """
     cur.execute("SELECT COUNT(customerid), city FROM Customers GROUP BY city;")
     return cur.fetchall()
@@ -181,8 +185,10 @@ def task_13_list_products_from_sweden_suppliers(cur):
 
     Returns: 3 records
     """
-    # cur.execute("SELECT * FROM products")
-    pass
+    cur.execute("SELECT products.productname FROM products "
+                "FULL OUTER JOIN suppliers ON products.supplierid = suppliers.supplierid "
+                "WHERE suppliers.country = 'SWEDEN';")
+    return cur.fetchall()
 
 
 def task_14_list_products_with_supplier_information(cur):
@@ -193,8 +199,22 @@ def task_14_list_products_with_supplier_information(cur):
         cur: psycopg cursor
 
     Returns: 77 records
+
+    json Example:
+    "productid": 1,
+    "productname": "Chais",
+    "unit": "10 boxes x 20 bags",
+    "price": "$18.00",
+    "country": "UK",
+    "city": "Londona",
+    "suppliername": "Exotic Liquid"
+
     """
-    pass
+    cur.execute("SELECT products.productid, products.productname, products.unit, products.price, "
+                "suppliers.country, suppliers.city, suppliers.suppliername "
+                "FROM products "
+                "INNER JOIN suppliers ON suppliers.supplierid = products.supplierid;")
+    return cur.fetchall()
 
 
 def task_15_list_customers_with_any_order_or_not(cur):
@@ -205,8 +225,17 @@ def task_15_list_customers_with_any_order_or_not(cur):
         cur: psycopg cursor
 
     Returns: 213 records
+
+    json Example:
+    "customername": "Old World Delicatessen",
+    "contactname": "Rene Phillips",
+    "country": "USA",
+    "orderid": 13
     """
-    pass
+    cur.execute("SELECT customers.customername, customers.contactname, customers.country, orders.orderid "
+                "FROM customers "
+                "FULL OUTER JOIN orders ON customers.customerid = orders.customerid;")
+    return cur.fetchall()
 
 
 def task_16_match_all_customers_and_suppliers_by_country(cur):
@@ -217,5 +246,23 @@ def task_16_match_all_customers_and_suppliers_by_country(cur):
         cur: psycopg cursor
 
     Returns: 194 records
+
+    json Example:
+    "customername": "Cactus Comidas para llevar",
+    "address": "Cerrito 333",
+    "customercountry": "Argentina",
+    "suppliercountry": null,
+    "suppliername": null
+
+
     """
-    pass
+    cur.execute("SELECT customers.customername, customers.address, customers.country, "
+                "suppliers.country, suppliername "
+                "FROM customers "
+                "FULL OUTER JOIN suppliers ON customers.country = suppliers.country;")
+    return cur.fetchall()
+
+
+"""
+looks like predicted output from tasks_[8,14,16].json not matches to actual tests results
+"""
