@@ -238,8 +238,8 @@ class TestSQLQueries(unittest.TestCase):
     def test_task_16(self):
         with self.conn.cursor(cursor_factory=RealDictCursor) as cursor:
             actual_result = task_16_match_all_customers_and_suppliers_by_country(cursor)
-            print(actual_result)
             actual_result = [dict(record) for record in actual_result]
+            print(actual_result)
             expected_result = self.load_rows_from_file("task_16.json")
 
             print(expected_result)

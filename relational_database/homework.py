@@ -258,7 +258,7 @@ def task_16_match_all_customers_and_suppliers_by_country(cur):  #FAILED
     cur.execute("SELECT customers.customername, customers.address, customers.country, "
                 "suppliers.country, suppliername "
                 "FROM customers "
-                "JOIN suppliers ON customers.country = suppliers.country;")
+                "FULL JOIN suppliers ON customers.country = suppliers.country;")
     return cur.fetchall()   # returns <class 'psycopg2.extras.RealDictRow'> instead of Dict, why?
 
 
