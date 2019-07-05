@@ -1,7 +1,0 @@
-# python files
-.pyc
-# IDE files
-.idea
-__pycache__
-
-env
