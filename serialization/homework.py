@@ -17,3 +17,6 @@ Advanced
 Добавити опрацьовку формату ini
 
 """
+
+from models.objects import *
+
